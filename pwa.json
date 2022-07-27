@@ -1,0 +1,11 @@
+{
+	"name": "xinmeitu",
+	"display": "fullscreen",
+	"background_color": "#000",
+	"icons": [{
+		"src": "icon.svg",
+		"type": "image/svg+xml",
+		"sizes": "144x144 192x192 512x512",
+		"purpose": "any"
+	}]
+}
