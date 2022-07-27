@@ -1,7 +1,7 @@
 {
 	"name": "xinmeitu",
 	"display": "fullscreen",
-	"background_color": "#000",
+	"background_color": "#111827",
 	"icons": [{
 		"src": "icon.svg",
 		"type": "image/svg+xml",
