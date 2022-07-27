@@ -18,7 +18,7 @@ fs.writeFileSync \paths.json text
 
 pwa = fs.readFileSync \pwa.json \utf8
 pwa = JSON.parse pwa
-# pwa.start_url = \.
+pwa.start_url = \.
 pwa = JSON.stringify pwa
 pwa = "data:application/manifest+json," + encodeURIComponent pwa
 
