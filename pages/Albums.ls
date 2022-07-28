@@ -1,22 +1,6 @@
 Albums = m.comp do
 	tilesBar: (page) ->
-		* * text: "Album"
-				icon: \album-collection
-				onclick: !~>
-					m.route.set \/albums
-			* text: "Người mẫu"
-				icon: \people-dress-simple
-				onclick: !~>
-					m.route.set \/models
-			* text: "Thẻ"
-				icon: \tags
-				onclick: !~>
-					m.route.set \/tags
-			* text: "Quốc gia"
-				icon: \earth-asia
-				onclick: !~>
-					m.route.set \/countries
-			* text: "Trang ngẫu nhiên"
+		* * text: "Trang ngẫu nhiên"
 				icon: \shuffle
 				onclick: !~>
 					index = $random $albums.total - 1

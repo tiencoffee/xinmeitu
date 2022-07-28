@@ -6,7 +6,38 @@ Bar = m.comp do
 		@attrs.prev ?= {}
 		@attrs.more ?= {}
 		@attrs.next ?= {}
-		@tiles = @parseTiles @attrs.tiles
+		route = m.route.get!
+		now = (new Date)toTimeString!substring 0 5
+		duration = (new Date performance.now! - 288e5)toTimeString!substring 0 5
+		@tiles =
+			* text: "Album"
+				icon: \album-collection
+				disabled: route is \/albums
+				onclick: !~>
+					m.route.set \/albums
+			* text: "Người mẫu"
+				icon: \people-dress-simple
+				disabled: route is \/models
+				onclick: !~>
+					m.route.set \/models
+			* text: "Tổ chức"
+				icon: \camcorder
+				disabled: route is \/institutions
+				onclick: !~>
+					m.route.set \/institutions
+			* text: "Thẻ"
+				icon: \tags
+				disabled: route is \/tags
+				onclick: !~>
+					m.route.set \/tags
+			* text: "#now | #duration"
+				icon: \clock
+			* text: "Quốc gia"
+				icon: \earth-asia
+				disabled: route is \/countries
+				onclick: !~>
+					m.route.set \/countries
+		@tiles ++= @parseTiles @attrs.tiles
 
 	parseTiles: (tiles) ->
 		tiles = ($castArr tiles ? [])flat!
@@ -60,9 +91,9 @@ Bar = m.comp do
 									m Tile,
 										disabled: tile.disabled
 										icon: tile.icon
-										onclick: (event) !~>
+										onclick: tile.onclick and (event) !~>
 											@isOpen = no
-											tile.onclick? event
+											tile.onclick event
 										tile.text
 								else
 									m Tile

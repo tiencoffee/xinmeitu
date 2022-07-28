@@ -74,6 +74,8 @@ Album = m.comp do
 				if @album.index < @album.photos.length - 1
 					$mark 0 innerHeight / 2 20 innerHeight / 4
 					@setIndex @album.index + 1
+			else if y2 > 0.25
+				not= @photo.rotate
 
 	onscrollViewer: (event) !->
 		event.redraw = no
@@ -109,7 +111,7 @@ Album = m.comp do
 				onclick: !~>
 					m.route.set "/institution/#{@album.institution.id}"
 			* text: @album.country.name
-				icon: \earth-asia
+				icon: \globe
 				onclick: !~>
 					m.route.set "/country/#{@album.country.id}"
 			@album.models.map (model) ~>

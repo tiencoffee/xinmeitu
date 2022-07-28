@@ -13,7 +13,7 @@ Tags = m.comp do
 							..remove \opacity-0
 							..add \anim--zoomIn
 					, $random 200
-			m \.absolute.bottom-0.w-full.text-sm.bg-gray-800.bg-opacity-75,
+			m \.absolute.bottom-0.w-full.py-1.text-sm.leading-4.bg-gray-800.bg-opacity-75,
 				tag.name
 
 	view: ->

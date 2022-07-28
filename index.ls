@@ -46,8 +46,10 @@ $mark = (x, y, width, height) !->
 
 m.mount document.body, Preload
 
-unless history.state
-	history.pushState yes ""
+unless sessionStorage.state
+	unless history.state
+		history.pushState yes ""
+	sessionStorage.state = 1
 
 addEventListener \touchstart (event) !->
 	if el = event.target.closest \.tap

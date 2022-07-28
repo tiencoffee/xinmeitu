@@ -18,5 +18,5 @@ Institutions = m.comp do
 
 	view: ->
 		m ListPage,
-			obj: $models
+			obj: $institutions
 			page: @
