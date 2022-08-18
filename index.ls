@@ -3,6 +3,7 @@ $institutions = void
 $models = void
 $tags = void
 $albums = void
+$preventContextMenu = yes
 
 $clamp = (num, min, max) ->
 	unless max?
@@ -57,4 +58,7 @@ addEventListener \touchstart (event) !->
 		$mark rect.x, rect.y, rect.width, rect.height
 
 addEventListener \contextmenu (event) !->
-	event.preventDefault!
+	if $preventContextMenu
+		event.preventDefault!
+	else
+		$preventContextMenu := yes

@@ -1,5 +1,6 @@
 Album = m.comp do
 	oninit: !->
+		@photoBaseUrl = \https://cloud.xinmeitulu.com/WE+cavOf/cayPhu/xQaYcwIngH+Oo03VzszltR5IojpEjQiU8F3RWeiXMrgWOhRLuqTx1gpUQsj7X4sPwmFMH
 		@album = $albums.list[@attrs.key]
 		@photo = void
 		@abort = void
@@ -76,6 +77,8 @@ Album = m.comp do
 					@setIndex @album.index + 1
 			else if y2 > 0.25
 				not= @photo.rotate
+			else
+				$preventContextMenu := no
 
 	onscrollViewer: (event) !->
 		event.redraw = no
@@ -138,7 +141,7 @@ Album = m.comp do
 							m \img.origin-top-left#photoEl,
 								class: m.class do
 									"photoEl--rotate-#{@photo.rotate and \yes or \no}"
-								src: "https://cloud.xinmeitulu.com/WE+cavOf/cayPhu/xQaYcwIngH+Oo03VzszltR5IojpEjQiU8F3RWeiXMrgWOhRLuqTx1gpUQsj7X4sPwmFMH#{@photo.name}"
+								src: @photoBaseUrl + @photo.name
 								onload: @onloadPhoto
 						| no
 							m Info,
