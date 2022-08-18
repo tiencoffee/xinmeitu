@@ -6,13 +6,7 @@ Institutions = m.comp do
 				m.route.set "/institution/#{institution.id}"
 			m \img.w-full.h-full.object-cover,
 				src: "https://cdn.jsdelivr.net/gh/tiencoffee/xinmeitu-poster/#{institution.thumb}.jpg"
-				onload: (event) !~>
-					{target} = event
-					setTimeout !~>
-						target.parentElement.classList
-							..remove \opacity-0
-							..add \anim--zoomIn
-					, $random 200
+				onload: $onloadParentAnim
 			m \.absolute.bottom-0.w-full.py-1.text-sm.leading-4.bg-gray-800.bg-opacity-75,
 				institution.name
 

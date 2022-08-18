@@ -135,13 +135,15 @@ Preload = m.comp do
 		$institutions := @parseText \institutions texts.1
 		$models := @parseText \models texts.2
 		$tags := @parseText \tags texts.3
-		$albums := @parseAlbum texts.4
+		$albums := @parseAlbums texts.4
+		$recents := @parseRecents localStorage.xinmeitu_recents
 		m.route document.body, \/albums,
 			"/albums": Albums
 			"/countries": Countries
 			"/institutions": Institutions
 			"/models": Models
 			"/tags": Tags
+			"/recents": Recents
 			"/album/:key": Album
 			"/country/:key": Country
 			"/institution/:key": Institution
@@ -164,7 +166,7 @@ Preload = m.comp do
 		total = Math.ceil list.length / chunk
 		{index, chunk, list, total}
 
-	parseAlbum: (text) ->
+	parseAlbums: (text) ->
 		index = 0
 		chunk = 20
 		list = Papa.parse text,
@@ -173,6 +175,7 @@ Preload = m.comp do
 			header: yes
 			fastMode: yes
 		.data
+		delete window.Papa
 		total = Math.ceil list.length / chunk
 		for album, i in list
 			album.id = i
@@ -195,6 +198,17 @@ Preload = m.comp do
 			+= album.pic
 			album.index = 0
 			album.photos = []
+		{index, chunk, list, total}
+
+	parseRecents: (text) ->
+		index = 0
+		chunk = 20
+		try
+			list = JSON.parse text
+				.map ($albums.list.)
+		catch
+			list = []
+		total = Math.ceil list.length / chunk
 		{index, chunk, list, total}
 
 	view: ->

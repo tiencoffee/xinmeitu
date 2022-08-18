@@ -3,6 +3,7 @@ $institutions = void
 $models = void
 $tags = void
 $albums = void
+$recents = void
 $preventContextMenu = yes
 
 $clamp = (num, min, max) ->
@@ -42,6 +43,33 @@ $mark = (x, y, width, height) !->
 		300
 	.finished
 	el.remove!
+
+$addRecent = (album) !->
+	index = $recents.list.indexOf album
+	if index >= 0
+		$recents.list.splice index, 1
+	$recents.list.unshift album
+	if $recents.list.length > 10000
+		$recents.list.pop!
+	data = $recents.list.map (.id)
+	text = JSON.stringify data
+	localStorage.xinmeitu_recents = text
+
+$onloadAnim = (event) !->
+	{target} = event
+	setTimeout !~>
+		target.classList
+			..remove \opacity-0
+			..add \anim--zoomIn
+	, $random 200
+
+$onloadParentAnim = (event) !->
+	{parentElement} = event.target
+	setTimeout !~>
+		parentElement.classList
+			..remove \opacity-0
+			..add \anim--zoomIn
+	, $random 200
 
 #code
 

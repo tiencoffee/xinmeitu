@@ -3,6 +3,7 @@ ListPage = m.comp do
 		@list = []
 		@obj = @attrs.obj
 		@page = @attrs.page
+		@objList = @attrs.objList or @obj.list
 		@setIndex @obj.index
 
 	setIndex: (index) !->
@@ -10,7 +11,7 @@ ListPage = m.comp do
 			@obj.index = index
 			start = index * @obj.chunk
 			end = start + @obj.chunk
-			@list = @obj.list.slice start, end
+			@list = @objList.slice start, end
 			m.redraw!
 
 	onclickPrev: (event) !->

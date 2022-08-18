@@ -6,13 +6,7 @@ Countries = m.comp do
 				m.route.set "/country/#{country.id}"
 			m \img.w-full.h-full.object-cover,
 				src: "https://cdn.jsdelivr.net/gh/tiencoffee/xinmeitu-poster/#{country.thumb}.jpg"
-				onload: (event) !~>
-					{target} = event
-					setTimeout !~>
-						target.parentElement.classList
-							..remove \opacity-0
-							..add \anim--zoomIn
-					, $random 200
+				onload: $onloadParentAnim
 			m \.absolute.bottom-0.w-full.py-1.text-sm.leading-4.bg-gray-800.bg-opacity-75,
 				country.name
 

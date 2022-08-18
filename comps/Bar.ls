@@ -9,7 +9,7 @@ Bar = m.comp do
 		route = m.route.get!
 		now = (new Date)toTimeString!substring 0 5
 		duration = (new Date performance.now! - 288e5)toTimeString!substring 0 5
-		@tiles =
+		tiles =
 			* text: "Album"
 				icon: \album-collection
 				disabled: route is \/albums
@@ -37,7 +37,14 @@ Bar = m.comp do
 				disabled: route is \/countries
 				onclick: !~>
 					m.route.set \/countries
-		@tiles ++= @parseTiles @attrs.tiles
+			* text: "Gần đây"
+				icon: \clock-rotate-left
+				disabled: route is \/recents
+				onclick: !~>
+					m.route.set \/recents
+			* 0
+		tiles ++= @attrs.tiles
+		@tiles = @parseTiles tiles
 
 	parseTiles: (tiles) ->
 		tiles = ($castArr tiles ? [])flat!
@@ -46,6 +53,7 @@ Bar = m.comp do
 		for tile in tiles
 			if tile?
 				if typeof tile is \number
+					tile %%= 3
 					until size % 3 is tile
 						size++
 						tiles2.push void
