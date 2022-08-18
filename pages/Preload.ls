@@ -125,7 +125,7 @@ Preload = m.comp do
 
 	oncreate: !->
 		texts = await Promise.all @files.map (file) ~>
-			fetch "https://cdn.jsdelivr.net/gh/xinmeitu/main/data/#file"
+			fetch "https://cdn.jsdelivr.net/gh/tiencoffee/xinmeitu-data/#file"
 				.then (.text!)
 				.then (text) ~>
 					@count++

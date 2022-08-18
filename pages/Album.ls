@@ -12,7 +12,7 @@ Album = m.comp do
 			m.redraw!
 			@abort = new AbortController
 			try
-				text = await m.fetch "https://cdn.jsdelivr.net/gh/xinmeitu/main/data/albums/#{@album.id}",
+				text = await m.fetch "https://cdn.jsdelivr.net/gh/tiencoffee/xinmeitu-data/albums/#{@album.id}",
 					signal: @abort.signal
 			catch @err
 				throw
