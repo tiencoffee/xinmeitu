@@ -175,7 +175,6 @@ Preload = m.comp do
 			header: yes
 			fastMode: yes
 		.data
-		delete window.Papa
 		total = Math.ceil list.length / chunk
 		for album, i in list
 			album.id = i
